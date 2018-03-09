@@ -15,6 +15,8 @@ class NumConcLarge{
         int len1=0;
         int loopCount=0;
         int a=0;
+        int rema=0;
+        int rem=0;
 
         //Main logic
         for(int i=0; i<x.length; i++){
@@ -25,14 +27,21 @@ class NumConcLarge{
                 if((len==1 && len1>1)){
                     min=x[j]/((int)Math.pow(10,len1-1));
                     max=x[i];
+                    a=len1-len;
                     if(max<min){
                         swap=x[j];
                         x[j]=x[i];
                         x[i]=swap;
                     }else if(max==min){
-                        swap=x[j];
-                        x[j]=x[i];
-                        x[i]=swap;
+                        rem=x[j]/((int)Math.pow(10,len1-2));
+                        rema=rem%10;
+                        if(max<rema){
+                            swap=x[j];
+                            x[j]=x[i];
+                            x[i]=swap;
+                        }else{
+                            continue;
+                        }
                     }else{
                         continue;
                     }
@@ -44,6 +53,16 @@ class NumConcLarge{
                         swap=x[j];
                         x[j]=x[i];
                         x[i]=swap;
+                    }else if(min==max){
+                        rem=x[i]/((int)Math.pow(10,len-2));
+                        rema=rem%10;
+                        if(rema<max){
+                            swap=x[j];
+                            x[j]=x[i];
+                            x[i]=swap;
+                        }else{
+                            continue;
+                        }
                     }else{
                         continue;
                     }
@@ -77,6 +96,7 @@ class NumConcLarge{
                             swap=x[j];
                             x[j]=x[i];
                             x[i]=swap;
+                            
                         }else{
                             continue;
                         }
@@ -116,12 +136,12 @@ class NumConcLarge{
             //print the maximum concatinated value formed by elements of array x[];
             }
             for(int jj:x){
-                System.out.print(jj);
+                System.out.print(jj+" ");
             }
             System.out.println();
         }
     //main function
     public static void main(String... args){
-        numConc(new int[]{4,17,8,999,564,55745,5587,25,9});
+        numConc(new int[]{54,548,556,60,7,780});
     }
 }
