@@ -1,26 +1,25 @@
-import java.util.*;
-
+/**This program counts frequency
+ * without sorting array
+ * 
+ */
 class FrequencyCount{
-    public static void frequencyCount(int x[]){
-        int count=0;
-        int cnt=0;
-        Arrays.sort(x);
-        for(int i:x){
-            System.out.print(i+" ");
-        }
-        for(int i=0; i<x.length; i++){
-            for(int j=i; j<x.length; j++){
-                if(x[i]==x[j]){
-                    count++;
-                    cnt++;
+    public static void getFrequencyCount(int []a){
+        int count=1;
+        for(int i=0; i<a.length; i++){
+            if(a[i]!=0){
+                for(int j=i+1; j<a.length; j++){
+                    if(a[i]==a[j]){
+                        count++;
+                        a[j]=0;
+                    }
                 }
+                System.out.println(a[i]+" "+count+" times");
+                a[i]=0;
+                count=1;
             }
-            System.out.println(x[i]+" ="+count+" times");
-            i=cnt;
-            count=0;
         }
     }
-        public static void main(String... args){
-            frequencyCount(new int[]{1,1,1,2,3,2,3,1,2,3,4,4,4,5,6,5,6,5,6,10,10,11,11,12,10,10,12,12});
-        }
+    public static void main(String... args){
+        getFrequencyCount(new int[]{1,2,5,1,1,4,5,4,7,4,5,6,6,6,6});
+    }
 }
